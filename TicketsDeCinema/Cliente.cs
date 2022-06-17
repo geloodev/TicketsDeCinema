@@ -28,9 +28,13 @@ namespace TicketsDeCinema
         ///////////////////////////////
         
         public string getCpf() { return cpf; }
+
         public string getNome() { return nome; }
+
         public string getDataNascimento() { return dataNascimento; }
+
         public string getEmail() { return email; }
+
         public string getSenha() { return senha;  }
 
         ///////////////////////////////
@@ -38,9 +42,13 @@ namespace TicketsDeCinema
         ///////////////////////////////
 
         public void setCpf(string cpf) { this.cpf = cpf; }
+
         public void setNome(string nome) { this.nome = nome; }
+
         public void setDataNascimento(string dataNascimento) { this.dataNascimento = dataNascimento; }
+
         public void setEmail(string email) { this.email = email; }
+
         public void setSenha(string senha) { this.senha = senha;  }
 
 

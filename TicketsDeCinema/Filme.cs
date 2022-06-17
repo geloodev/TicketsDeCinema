@@ -25,70 +25,36 @@ namespace TicketsDeCinema
             this.classificacao = classificacao;
         }
 
-        //=================================================Getters
+        ///////////////////////////////
+        // GETTERS
+        ///////////////////////////////
 
-        public int getIdFilme()
-        {
-            return idFilme;
-        }
+        public int getIdFilme() { return idFilme; }
 
-        public string getNome()
-        {
-            return nome;
-        }
+        public string getNome() { return nome; }
 
-        public string getGenero()
-        {
-            return genero;
-        }
+        public string getGenero() { return genero; }
 
-        public string getLancamento()
-        {
-            return lancamento;
-        }
+        public string getLancamento() { return lancamento; }
 
-        public string getDuracao()
-        {
-            return duracao;
-        }
+        public string getDuracao() { return duracao; }
         
-        public string[] getClassificacao() {
-            return classificacao;
-        }
+        public string[] getClassificacao() { return classificacao; }
 
-        //=================================================Setters
-        public void setCpf(int idFilme)
-        {
-            this.idFilme = idFilme;
-        }
-        public void setNome(string nome)
-        {
-            this.nome = nome;
-        }
-        public void setGenero(string genero)
-        {
-            this.genero = genero;
-        }
-        public void setLancamento(string lancamento)
-        {
-            this.lancamento = lancamento;
-        }
-        public void setDuracao(string duracao)
-        {
-            this.duracao = duracao;
-        }
-        public void setClassificacao(string[] classificacao)
-        {
-            this.classificacao = classificacao;
-        }
+        ///////////////////////////////
+        // SETTERS  
+        ///////////////////////////////
+        
+        public void setCpf(int idFilme) { this.idFilme = idFilme; }
 
-        /*
-        idFilme INT AUTO_INCREMENT PRIMARY KEY,
-        Nome VARCHAR(45) NOT NULL,
-        Genero VARCHAR(45) NOT NULL,
-        lancamento DATE NOT NULL,
-        duracao TIME NOT NULL,
-        classificacao enum ('Livre','10 anos','12 anos','14 anos','16 anos','18 anos')
-         */
+        public void setNome(string nome) { this.nome = nome; }
+
+        public void setGenero(string genero) { this.genero = genero; }
+
+        public void setLancamento(string lancamento) { this.lancamento = lancamento; }
+
+        public void setDuracao(string duracao) { this.duracao = duracao; }
+
+        public void setClassificacao(string[] classificacao) { this.classificacao = classificacao; }
     }
 }

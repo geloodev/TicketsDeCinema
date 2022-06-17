@@ -39,7 +39,7 @@ namespace TicketsDeCinema
 
         public void setCpf(string cpf) { this.cpf = cpf; }
         public void setNome(string nome) { this.nome = nome; }
-        public void setDataNascimento(string dataNascimento) { this.dataNascimento = dataNascimento }
+        public void setDataNascimento(string dataNascimento) { this.dataNascimento = dataNascimento; }
         public void setEmail(string email) { this.email = email; }
         public void setSenha(string senha) { this.senha = senha;  }
 

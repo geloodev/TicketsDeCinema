@@ -31,24 +31,28 @@ namespace TicketsDeCinema
         {
             return idFilme;
         }
+
         public string getNome()
         {
             return nome;
         }
+
         public string getGenero()
         {
             return genero;
         }
+
         public string getLancamento()
         {
             return lancamento;
         }
+
         public string getDuracao()
         {
             return duracao;
         }
-        public string[] getClassificacao()
-        {
+        
+        public string[] getClassificacao() {
             return classificacao;
         }
 

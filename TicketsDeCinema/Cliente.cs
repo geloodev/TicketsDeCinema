@@ -115,5 +115,29 @@ namespace TicketsDeCinema
                 if (connection != null) connection.Close();
             }
         }
+
+        public bool updateUserData(Cliente userToUpdate)
+        {
+            int affectedRows = 0;
+            MySqlConnection connection = null;
+            MySqlCommand updateUser = null;
+
+            try
+            {
+                connection = new MySqlConnection(connectionString);
+                connection.Open();
+
+                string updateText = $"update cliente set nome = {userToUpdate.getUserName()}, dataNascimento = {userToUpdate.getUserBirthDate()}, email = {userToUpdate.getUserEmail()}, senha = {utils.Base64Encode(userToUpdate.getUserPassword())}";
+
+                updateUser = new MySqlCommand(updateText, connection);
+                affectedRows = updateUser.ExecuteNonQuery();
+            } finally
+            {
+                if (connection != null) connection.Close();
+            }
+
+            if (affectedRows != 0) return true;
+            else return false;
+        }
     }
 }

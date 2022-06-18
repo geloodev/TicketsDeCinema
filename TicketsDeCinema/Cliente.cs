@@ -10,56 +10,56 @@ namespace TicketsDeCinema
     internal class Cliente
     {
         Utils utils = new Utils();
+        //String de conexão com o banco de dados local
+        string connectionString = @"server=localhost;uid=root;pwd=admin;database=cinema;ConnectionTimeout=2";
 
-        private string cpf;
-        private string nome;
-        private string dataNascimento;
-        private string email;
-        private string senha;
+        private string userId;
+        private string userName;
+        private string userBirthDate;
+        private string userEmail;
+        private string userPassword;
 
         public Cliente (string cpf, string nome, string dataNascimento, string email, string senha)
         {
-            this.cpf = cpf;
-            this.nome = nome;
-            this.dataNascimento = dataNascimento;
-            this.email = email;
-            this.senha = senha;
+            this.userId = cpf;
+            this.userName = nome;
+            this.userBirthDate = dataNascimento;
+            this.userEmail = email;
+            this.userPassword = senha;
         }
 
         ///////////////////////////////
         // GETTERS
         ///////////////////////////////
         
-        public string getCpf() { return cpf; }
+        public string getUserId() { return userId; }
 
-        public string getNome() { return nome; }
+        public string getUserName() { return userName; }
 
-        public string getDataNascimento() { return dataNascimento; }
+        public string getUserBirthDate() { return userBirthDate; }
 
-        public string getEmail() { return email; }
+        public string getUserEmail() { return userEmail; }
 
-        public string getSenha() { return senha;  }
+        public string getUserPassword() { return userPassword;  }
 
         ///////////////////////////////
         // SETTERS  
         ///////////////////////////////
 
-        public void setCpf(string cpf) { this.cpf = cpf; }
+        public void setUserId(string cpf) { this.userId = cpf; }
 
-        public void setNome(string nome) { this.nome = nome; }
+        public void setUserName(string nome) { this.userName = nome; }
 
-        public void setDataNascimento(string dataNascimento) { this.dataNascimento = dataNascimento; }
+        public void setUserBirthDate(string dataNascimento) { this.userBirthDate = dataNascimento; }
 
-        public void setEmail(string email) { this.email = email; }
+        public void setUserEmail(string email) { this.userEmail = email; }
 
-        public void setSenha(string senha) { this.senha = senha;  }
+        public void setUserPassword(string senha) { this.userPassword = senha;  }
 
-        public Cliente logIn(string loginCpf, string loginPassword)
+        public Cliente SignIn(string loginCpf, string loginPassword)
         {
             Cliente loggedCliente;
 
-            //String de conexão com o banco de dados local
-            string connectionString = @"server=localhost;uid=root;pwd=admin;database=cinema;ConnectionTimeout=2";
             //cria uma conexão
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -77,13 +77,13 @@ namespace TicketsDeCinema
             {
                 queryData.Read();
 
-                string cpf = queryData.GetString(0);
-                string nome = queryData.GetString(1);
-                DateTime dataNascimento = queryData.GetDateTime(2);
-                string email = queryData.GetString(3);
-                string senha = queryData.GetString(4);
+                string userId = queryData.GetString(0);
+                string userName = queryData.GetString(1);
+                DateTime userBirthDate = queryData.GetDateTime(2);
+                string userEmail = queryData.GetString(3);
+                string userPassword = queryData.GetString(4);
 
-                loggedCliente = new Cliente(cpf, nome, dataNascimento.ToString(), email, senha);
+                loggedCliente = new Cliente(userId, userName, userBirthDate.ToString(), userEmail, userPassword);
             } else
             {
                 loggedCliente = null;
@@ -92,6 +92,28 @@ namespace TicketsDeCinema
             queryData.Close();
 
             return loggedCliente;
+        }
+
+        public void signUp(Cliente userToSignUp)
+        {
+            MySqlConnection connection = null;
+            MySqlCommand insertUser = null;
+
+            try
+            {
+                connection = new MySqlConnection(connectionString);
+                connection.Open();
+
+                string insertText = $"insert into cliente values ({userToSignUp.getUserId()}, {userToSignUp.getUserName()}, {userToSignUp.getUserBirthDate()}, {userToSignUp.getUserEmail()}, {utils.Base64Encode(userToSignUp.getUserPassword())})";
+
+                insertUser = new MySqlCommand(insertText, connection);
+
+                insertUser.ExecuteNonQuery();
+            } finally
+            {
+                //fecha a conexão com o banco!
+                if (connection != null) connection.Close();
+            }
         }
     }
 }

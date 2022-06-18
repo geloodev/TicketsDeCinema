@@ -94,11 +94,10 @@ namespace TicketsDeCinema
             return loggedCliente;
         }
 
-        public bool signUp(Cliente userToSignUp)
+        public void signUp(Cliente userToSignUp)
         {
             MySqlConnection connection = null;
             MySqlCommand insertUser = null;
-            int affectedRows = 0;
 
             try
             {
@@ -109,15 +108,12 @@ namespace TicketsDeCinema
 
                 insertUser = new MySqlCommand(insertText, connection);
 
-                affectedRows = insertUser.ExecuteNonQuery();
+                insertUser.ExecuteNonQuery();
             } finally
             {
                 //fecha a conexão com o banco!
                 if (connection != null) connection.Close();
             }
-
-            if (affectedRows != 0) return true;
-            else return false;
         }
     }
 }

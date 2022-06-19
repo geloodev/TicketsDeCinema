@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppContent.Designer.cs">
+      <DependentUpon>AppContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cinema.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Filme.cs" />
@@ -67,6 +73,9 @@
     <Compile Include="Sala.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="AppContent.resx">
+      <DependentUpon>AppContent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\cineIngresso.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="database\database.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

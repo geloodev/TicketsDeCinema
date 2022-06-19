@@ -82,7 +82,7 @@
             // tbEmail
             // 
             this.tbEmail.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tbEmail.ForeColor = System.Drawing.Color.Red;
+            this.tbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.tbEmail.Location = new System.Drawing.Point(510, 147);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(200, 29);
@@ -102,11 +102,12 @@
             this.btnSignIn.TabIndex = 7;
             this.btnSignIn.Text = "Entrar";
             this.btnSignIn.UseVisualStyleBackColor = false;
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
             // tbPassword
             // 
             this.tbPassword.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tbPassword.ForeColor = System.Drawing.Color.Red;
+            this.tbPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.tbPassword.Location = new System.Drawing.Point(510, 224);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(200, 29);

@@ -94,26 +94,39 @@ namespace TicketsDeCinema
             return loggedCliente;
         }
 
-        public void signUp(Cliente userToSignUp)
+        public string signUp()
         {
             MySqlConnection connection = null;
             MySqlCommand insertUser = null;
+            string errMessage = "";
 
             try
             {
                 connection = new MySqlConnection(connectionString);
                 connection.Open();
 
-                string insertText = $"insert into cliente values ({userToSignUp.getUserId()}, {userToSignUp.getUserName()}, {userToSignUp.getUserBirthDate()}, {userToSignUp.getUserEmail()}, {utils.Base64Encode(userToSignUp.getUserPassword())})";
+                insertUser = new MySqlCommand();
 
-                insertUser = new MySqlCommand(insertText, connection);
+                insertUser.Connection = connection;
+
+                insertUser.CommandText = "insert into cliente values (@userId, @userName, @userBirthDate, @userEmail, @userPassword);";
+
+                insertUser.Parameters.AddWithValue("@userId", userId);
+                insertUser.Parameters.AddWithValue("@userName", userName);
+                insertUser.Parameters.AddWithValue("@userBirthDate", userBirthDate);
+                insertUser.Parameters.AddWithValue("@userEmail", userEmail);
+                insertUser.Parameters.AddWithValue("@userPassword", utils.Base64Encode(userPassword));
 
                 insertUser.ExecuteNonQuery();
+            } catch (MySqlException er) {
+                return errMessage = er.Message;
             } finally
             {
                 //fecha a conexão com o banco!
                 if (connection != null) connection.Close();
             }
+
+            return errMessage;
         }
 
         public bool updateUserData(Cliente userToUpdate)

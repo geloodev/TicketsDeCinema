@@ -90,6 +90,8 @@ INSERT INTO ticket VALUES
 (default,'12345678900','6','4','14.00','2022-06-05 04:30:00','J13','0','1','1'),
 (default,'00987654321','1','2','14.00','2022-01-15 02:10:00','D33','0','1','1');
 
+select * from cliente;
+
 -- Consulta Nome, Preço e Data dos ingressos comprados
 SELECT cliente.nome as 'Nome do Cliente', ticket.preco as 'Preço do Ticket', date_format(ticket.datahora,"%d/%m/%Y %h:%i:%s") as 'Data e Hora da Sessão'
 	FROM cliente inner join ticket on cliente.cpf = ticket.cpfCliente;
@@ -111,3 +113,5 @@ SELECT filme.nome as 'Nome do Filme', filme.genero as 'Gênero', date_format(fil
 -- testes    
 -- select nome as 'Nome', genero as 'Gênero', date_format(lancamento,"%d/%m/%Y") as 'Data de Lançamento', duracao as 'Duração', classificacao as 'Classificação' from filme order by nome;
 -- select CPF, Nome, date_format(dataNascimento,"%d/%m/%Y") as 'Data de Nacimento', email as 'e-Mail', senha as 'Senha' from cliente order by nome;
+
+select * from cliente where cpf = "12345678900" and senha = "MTIz";

@@ -44,6 +44,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.lbError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,7 +89,7 @@
             // tbId
             // 
             this.tbId.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tbId.ForeColor = System.Drawing.Color.Red;
+            this.tbId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.tbId.Location = new System.Drawing.Point(334, 155);
             this.tbId.Name = "tbId";
             this.tbId.Size = new System.Drawing.Size(200, 29);
@@ -108,11 +109,12 @@
             this.btnSignUp.TabIndex = 16;
             this.btnSignUp.Text = "Registrar";
             this.btnSignUp.UseVisualStyleBackColor = false;
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
             // 
             // tbName
             // 
             this.tbName.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tbName.ForeColor = System.Drawing.Color.Red;
+            this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.tbName.Location = new System.Drawing.Point(334, 78);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(410, 29);
@@ -159,7 +161,7 @@
             // tbPassword
             // 
             this.tbPassword.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tbPassword.ForeColor = System.Drawing.Color.Red;
+            this.tbPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.tbPassword.Location = new System.Drawing.Point(544, 232);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(200, 29);
@@ -168,7 +170,7 @@
             // tbBirthDate
             // 
             this.tbBirthDate.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tbBirthDate.ForeColor = System.Drawing.Color.Red;
+            this.tbBirthDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.tbBirthDate.Location = new System.Drawing.Point(544, 155);
             this.tbBirthDate.Name = "tbBirthDate";
             this.tbBirthDate.Size = new System.Drawing.Size(200, 29);
@@ -203,7 +205,7 @@
             // tbEmail
             // 
             this.tbEmail.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tbEmail.ForeColor = System.Drawing.Color.Red;
+            this.tbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.tbEmail.Location = new System.Drawing.Point(334, 232);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(200, 29);
@@ -222,12 +224,22 @@
             this.label5.Text = "Seu e-mail";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // lbError
+            // 
+            this.lbError.AutoSize = true;
+            this.lbError.ForeColor = System.Drawing.Color.Red;
+            this.lbError.Location = new System.Drawing.Point(331, 383);
+            this.lbError.Name = "lbError";
+            this.lbError.Size = new System.Drawing.Size(0, 13);
+            this.lbError.TabIndex = 27;
+            // 
             // SignUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.lbError);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbPassword);
@@ -269,5 +281,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbError;
     }
 }

@@ -42,7 +42,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Location = new System.Drawing.Point(10, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 14);
             this.label1.TabIndex = 0;
@@ -57,7 +57,7 @@
             this.Column5,
             this.Column3,
             this.Column4});
-            this.dgTickets.Location = new System.Drawing.Point(7, 21);
+            this.dgTickets.Location = new System.Drawing.Point(10, 30);
             this.dgTickets.Name = "dgTickets";
             this.dgTickets.Size = new System.Drawing.Size(566, 419);
             this.dgTickets.TabIndex = 5;

@@ -16,5 +16,10 @@ namespace TicketsDeCinema
         {
             InitializeComponent();
         }
+
+        public PictureBox getPbMoviePoster1()
+        {
+            return pbMoviePoster1;
+        }
     }
 }

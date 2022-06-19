@@ -13,12 +13,24 @@ namespace TicketsDeCinema
 {
     public partial class AppContent : Form
     {
-        string connectionString = @"server=localhost;uid=root;pwd=admin;database=cinema;ConnectionTimeout=2";
+        string connectionString;
+        MySqlConnection connection;
+
         List<Ticket> boughtTickets = new List<Ticket>();
+        List<Sessao> availableMovieSessions = new List<Sessao>();
+        List<int> availableMoviesId = new List<int>();
+        List<AvailableMovieSessions> availableMovies = new List<AvailableMovieSessions>();
+
+        Cliente loggedUser;
 
         public AppContent(Cliente loggedUser)
         {
             InitializeComponent();
+
+            connectionString = @"server=localhost;uid=root;pwd=admin;database=cinema;ConnectionTimeout=2";
+            connection = new MySqlConnection(connectionString);
+            this.loggedUser = loggedUser;
+
             btnMovieSession.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 199, 116);
             btnMyTickets.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 199, 116);
             btnMyProfile.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 199, 116);
@@ -31,7 +43,85 @@ namespace TicketsDeCinema
 
             lbActiveUser.Text = "Entrou como " + loggedUser.getUserName().Split(' ')[0];
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            getBoughtTickets();
+        }
+
+        public void getMovieSessions()
+        {
+            MySqlCommand selectMovieSessions;
+
+            try
+            {
+                connection.Open();
+
+                selectMovieSessions = new MySqlCommand();
+                selectMovieSessions.Connection = connection;
+                selectMovieSessions.CommandText = "select * from sessao";
+
+                MySqlDataReader movieSessions = selectMovieSessions.ExecuteReader();
+
+                if (movieSessions.HasRows) 
+                {
+                    while (movieSessions.Read()) 
+                    {
+                        int movieId = movieSessions.GetInt32(1);
+                        int movieRoomId = movieSessions.GetInt32(2);
+                        DateTime movieTime = movieSessions.GetDateTime(0);
+
+                        Sessao movieSession = new Sessao(movieId, movieRoomId, movieTime);
+
+                        availableMovieSessions.Add(movieSession);
+                     }
+                }
+            }
+            finally
+            {
+                //fecha a conexão com o banco!
+                if (connection != null) connection.Close();
+            }
+
+            foreach(Sessao session in availableMovieSessions)
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand getMovieName = new MySqlCommand();
+                    getMovieName.Connection = connection;
+                    getMovieName.CommandText = "select distinct f.nome from filme f inner join sessao s on s.idFilme = f.idFilme where f.idFilme = @idFilme;";
+                    getMovieName.Parameters.AddWithValue("@idFilme", session.getMovieId());
+
+                    MySqlDataReader movieName = getMovieName.ExecuteReader();
+
+                    if (movieName.HasRows)
+                    {
+                        movieName.Read();
+
+                        AvailableMovieSessions newMovie = new AvailableMovieSessions(session.getMovieId(), movieName.GetString(0));
+
+                        availableMovies.Add(newMovie);
+                    }
+                }
+                finally
+                {
+                    if (connection != null) connection.Close();
+                }
+            }
+
+            foreach(AvailableMovieSessions movieSession in availableMovies)
+            {
+                foreach(Sessao session in availableMovieSessions)
+                {
+                    if (session.getMovieId() == movieSession.getMovieId())
+                    {
+                        movieSession.insertMovieSession(session.getMovieTime());
+                    }
+                }
+            }
+        }
+
+        public void getBoughtTickets()
+        {
             MySqlCommand selectTickets;
 
             try
@@ -48,7 +138,7 @@ namespace TicketsDeCinema
                 //caso o comando select tenha retornado alguma linha
                 if (userTickets.HasRows)
                 {
-                    while(userTickets.Read())
+                    while (userTickets.Read())
                     {
                         int ticketId = userTickets.GetInt32("idTicket");
                         string ticketUserId = userTickets.GetString("cpfCliente");
@@ -62,15 +152,15 @@ namespace TicketsDeCinema
                         bool ticketIsHalfPriced = userTickets.GetBoolean("meiaEntrada");
 
                         Ticket boughtTicket = new Ticket(
-                            ticketId, 
-                            ticketUserId, 
-                            ticketMovieId, 
+                            ticketId,
+                            ticketUserId,
+                            ticketMovieId,
                             ticketMovieRoom,
                             ticketPrice,
                             ticketMovieTime,
-                            ticketChair, 
-                            ticketIs3d, 
-                            ticketIsSubtitled, 
+                            ticketChair,
+                            ticketIs3d,
+                            ticketIsSubtitled,
                             ticketIsHalfPriced
                         );
 
@@ -116,7 +206,6 @@ namespace TicketsDeCinema
                 }
                 finally
                 {
-                    //fecha a conexão com o banco!
                     if (connection != null) connection.Close();
                 }
             }

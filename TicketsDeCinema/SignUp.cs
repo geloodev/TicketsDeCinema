@@ -61,6 +61,13 @@ namespace TicketsDeCinema
                     {
                         MessageBox.Show(signUpStatus);
                     }
+                } else
+                {
+                    MessageBox.Show("Cadastro realizado com sucesso, realize o login");
+                    SignIn signInForm = new SignIn();
+                    signInForm.Show();
+                    signInForm.Activate();
+                    this.Close();
                 }
             }
             catch (FormatException er)

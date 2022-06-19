@@ -115,3 +115,5 @@ SELECT filme.nome as 'Nome do Filme', filme.genero as 'Gênero', date_format(fil
 -- select CPF, Nome, date_format(dataNascimento,"%d/%m/%Y") as 'Data de Nacimento', email as 'e-Mail', senha as 'Senha' from cliente order by nome;
 
 select * from cliente where cpf = "12345678900" and senha = "MTIz";
+
+delete from cliente where cpf = "11223344550" or cpf = "11223344556";

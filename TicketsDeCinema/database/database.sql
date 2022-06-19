@@ -24,25 +24,33 @@ numeroSala INT PRIMARY KEY,
 qtdAssentos INT NOT NULL
 );
 
+create table sessao (
+	dataHora datetime not null,
+    idFilme int not null,
+    numeroSala int not null,
+    
+    constraint pkDataHoraNumeroSala primary key (dataHora, numeroSala),
+    constraint fkIdFilme foreign key (idFilme) references filme (idFilme),
+    constraint fkNumeroSala foreign key (numeroSala) references sala (numeroSala)
+);
+
 CREATE TABLE ticket (
 idTicket INT AUTO_INCREMENT PRIMARY KEY,
 cpfCliente varchar(11),
 idFilme INT,
 numeroSala INT,
-preco DECIMAL(5,2) NULL DEFAULT 0.00,
 dataHora DATETIME NOT NULL,
+preco DECIMAL(5,2) NULL DEFAULT 0.00,
 assento varchar(4) NOT NULL,
 versao3d BOOL NULL DEFAULT 0,
 legendado BOOL NULL DEFAULT 0,
 meiaEntrada BOOL NULL DEFAULT 0,
 
-FOREIGN KEY (cpfCliente) REFERENCES cliente (cpf),
-FOREIGN KEY (idFilme) REFERENCES filme (idFilme),
-FOREIGN KEY (numeroSala) REFERENCES sala (numeroSala) 
+constraint fkDataHoraIdFilmeNumeroSala foreign key (dataHora, numeroSala) references sessao (dataHora, numeroSala),
+FOREIGN KEY (cpfCliente) REFERENCES cliente (cpf)
 ON DELETE CASCADE
 ON UPDATE CASCADE
 );
-
 insert into filme (nome, genero, lancamento, duracao, classificacao) values ('Sonic 2','Animação','2022-04-07', 20200,'10 anos');
 insert into filme (nome, genero, lancamento, duracao, classificacao) values ('Doutor Estranho no Multiverso da Loucura','Fantasia','2022-05-05', 20600,'14 anos');
 insert into filme (nome, genero, lancamento, duracao, classificacao) values ('Jujutsu Kaisen 0','Anime','2022-04-28', 14500,'14 anos');
@@ -78,19 +86,36 @@ insert into sala values
 (9, 70),
 (10, 70);
 
+insert into sessao values
+('2022-01-23 12:30:00', 1, 1),
+('2022-01-23 14:30:00', 1, 1),
+('2022-01-23 16:30:00', 1, 1),
+('2022-01-23 19:00:00', 2, 1),
+('2022-01-23 21:00:00', 2, 1),
+('2022-01-23 12:30:00', 9, 2),
+('2022-01-23 14:30:00', 9, 2),
+('2022-01-23 16:30:00', 9, 2),
+('2022-01-23 19:00:00', 10, 2),
+('2022-01-23 21:00:00', 10, 2),
+('2022-01-23 12:30:00', 4, 3),
+('2022-01-23 14:30:00', 4, 3),
+('2022-01-23 12:30:00', 2, 4),
+('2022-01-23 14:30:00', 2, 4),
+('2022-01-23 16:30:00', 2, 5),
+('2022-01-23 12:30:00', 1, 6),
+('2022-01-23 14:30:00', 1, 6),
+('2022-01-23 16:30:00', 1, 6);
+
 INSERT INTO ticket VALUES
-(default,'12345678900','1','2','14.00','2022-01-23 12:45:00','B22','0','0','1'),
-(default,'00987654321','3','7','14.00','2022-05-13 04:30:00','C03','1','0','1'),
-(default,'88888888888','2','2','28.00','2022-04-10 08:40:00','J45','0','0','0'),
-(default,'33333333333','9','4','28.00','2022-04-21 09:00:00','M40','1','1','0'),
-(default,'77777777777','8','4','28.00','2022-03-29 12:45:00','A47','1','0','0'),
-(default,'12345678900','6','7','14.00','2022-06-02 10:10:00','E35','0','1','1'),
-(default,'22222222222','3','6','28.00','2022-02-12 05:45:00','B24','0','0','0'),
-(default,'11111111111','4','2','14.00','2022-02-07 07:25:00','H32','0','1','1'),
-(default,'12345678900','6','4','14.00','2022-06-05 04:30:00','J13','0','1','1'),
-(default,'00987654321','1','2','14.00','2022-01-15 02:10:00','D33','0','1','1');
+(default,'12345678900',1,1,'2022-01-23 12:30:00','14.00','B22','0','0','1'),
+(default,'12345678900',1,1,'2022-01-23 12:30:00','14.00','B23','0','0','1'),
+(default,'00987654321',1,1,'2022-01-23 14:30:00','14.00','C03','1','0','1');
 
 select * from cliente;
+select * from filme;
+select * from sala;
+select * from sessao;
+select * from ticket;
 
 -- Consulta Nome, Preço e Data dos ingressos comprados
 SELECT cliente.nome as 'Nome do Cliente', ticket.preco as 'Preço do Ticket', date_format(ticket.datahora,"%d/%m/%Y %h:%i:%s") as 'Data e Hora da Sessão'
@@ -109,11 +134,8 @@ SELECT filme.nome as 'Nome do Filme', filme.genero as 'Gênero', date_format(fil
     group by ticket.idTicket
     order by ticket.idTicket asc;
 
-    
+select distinct f.nome from filme f inner join ticket t on t.idFilme = f.idFilme where f.idFilme = 1;
+
 -- testes    
 -- select nome as 'Nome', genero as 'Gênero', date_format(lancamento,"%d/%m/%Y") as 'Data de Lançamento', duracao as 'Duração', classificacao as 'Classificação' from filme order by nome;
 -- select CPF, Nome, date_format(dataNascimento,"%d/%m/%Y") as 'Data de Nacimento', email as 'e-Mail', senha as 'Senha' from cliente order by nome;
-
-select * from cliente where cpf = "12345678900" and senha = "MTIz";
-
-delete from cliente where cpf = "11223344550" or cpf = "11223344556";

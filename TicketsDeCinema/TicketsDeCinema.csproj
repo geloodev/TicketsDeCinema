@@ -56,6 +56,24 @@
     <Compile Include="Cinema.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Filme.cs" />
+    <Compile Include="MovieSessions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MovieSessions.Designer.cs">
+      <DependentUpon>MovieSessions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyProfile.Designer.cs">
+      <DependentUpon>MyProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="myTickets.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="myTickets.Designer.cs">
+      <DependentUpon>myTickets.cs</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +93,15 @@
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="AppContent.resx">
       <DependentUpon>AppContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovieSessions.resx">
+      <DependentUpon>MovieSessions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyProfile.resx">
+      <DependentUpon>MyProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="myTickets.resx">
+      <DependentUpon>myTickets.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>

@@ -43,5 +43,25 @@ namespace TicketsDeCinema
             this.legendado = legendado;
             this.meiaEntrada = meiaEntrada;
         }
+
+        public int getTicketId() { return idTicket; }
+
+        public string getTicketUserId() { return cpfCliente; }
+
+        public int getTicketMovieId() { return idFilme; }
+
+        public int getTicketMovieRoom() { return numeroSala; }
+
+        public float getTicketPrice() { return preco; }
+
+        public DateTime getTicketMovieTime() { return dataHora; }
+
+        public string getTicketChair() { return assento; }
+
+        public bool getTicketIs3d() { return versao3d; }
+
+        public bool getTicketIsSubtitled() { return legendado; }
+
+        public bool getTicketIsHalfPriced() { return meiaEntrada; }
     }
 }

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppContent));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSignOut = new System.Windows.Forms.Button();
             this.btnMyProfile = new System.Windows.Forms.Button();
             this.btnMyTickets = new System.Windows.Forms.Button();
             this.btnMovieSession = new System.Windows.Forms.Button();
+            this.lbActiveUser = new System.Windows.Forms.Label();
+            this.btnSignOut = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -42,6 +42,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lbActiveUser);
             this.panel1.Controls.Add(this.btnSignOut);
             this.panel1.Controls.Add(this.btnMyProfile);
             this.panel1.Controls.Add(this.btnMyTickets);
@@ -53,24 +54,6 @@
             this.panel1.Size = new System.Drawing.Size(200, 461);
             this.panel1.TabIndex = 0;
             // 
-            // btnSignOut
-            // 
-            this.btnSignOut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSignOut.FlatAppearance.BorderSize = 0;
-            this.btnSignOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignOut.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnSignOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnSignOut.Location = new System.Drawing.Point(0, 428);
-            this.btnSignOut.Name = "btnSignOut";
-            this.btnSignOut.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.btnSignOut.Size = new System.Drawing.Size(200, 30);
-            this.btnSignOut.TabIndex = 4;
-            this.btnSignOut.Text = "Sair";
-            this.btnSignOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSignOut.UseVisualStyleBackColor = true;
-            this.btnSignOut.MouseEnter += new System.EventHandler(this.btnSignOut_MouseEnter);
-            this.btnSignOut.MouseLeave += new System.EventHandler(this.btnSignOut_MouseLeave);
-            // 
             // btnMyProfile
             // 
             this.btnMyProfile.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -80,7 +63,7 @@
             this.btnMyProfile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.btnMyProfile.Location = new System.Drawing.Point(0, 197);
             this.btnMyProfile.Name = "btnMyProfile";
-            this.btnMyProfile.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.btnMyProfile.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.btnMyProfile.Size = new System.Drawing.Size(200, 30);
             this.btnMyProfile.TabIndex = 3;
             this.btnMyProfile.Text = "Meu perfil";
@@ -98,7 +81,7 @@
             this.btnMyTickets.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.btnMyTickets.Location = new System.Drawing.Point(0, 167);
             this.btnMyTickets.Name = "btnMyTickets";
-            this.btnMyTickets.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.btnMyTickets.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.btnMyTickets.Size = new System.Drawing.Size(200, 30);
             this.btnMyTickets.TabIndex = 2;
             this.btnMyTickets.Text = "Meus ingressos";
@@ -116,7 +99,7 @@
             this.btnMovieSession.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.btnMovieSession.Location = new System.Drawing.Point(0, 137);
             this.btnMovieSession.Name = "btnMovieSession";
-            this.btnMovieSession.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.btnMovieSession.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.btnMovieSession.Size = new System.Drawing.Size(200, 30);
             this.btnMovieSession.TabIndex = 1;
             this.btnMovieSession.Text = "Sessões";
@@ -125,9 +108,40 @@
             this.btnMovieSession.MouseEnter += new System.EventHandler(this.btnMovieSession_MouseEnter);
             this.btnMovieSession.MouseLeave += new System.EventHandler(this.btnMovieSession_MouseLeave);
             // 
+            // lbActiveUser
+            // 
+            this.lbActiveUser.AutoSize = true;
+            this.lbActiveUser.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.lbActiveUser.Location = new System.Drawing.Point(12, 386);
+            this.lbActiveUser.Name = "lbActiveUser";
+            this.lbActiveUser.Size = new System.Drawing.Size(0, 14);
+            this.lbActiveUser.TabIndex = 5;
+            // 
+            // btnSignOut
+            // 
+            this.btnSignOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSignOut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSignOut.FlatAppearance.BorderSize = 0;
+            this.btnSignOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSignOut.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnSignOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnSignOut.Image = global::TicketsDeCinema.Properties.Resources.logoutBlack;
+            this.btnSignOut.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSignOut.Location = new System.Drawing.Point(0, 408);
+            this.btnSignOut.Name = "btnSignOut";
+            this.btnSignOut.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.btnSignOut.Size = new System.Drawing.Size(200, 30);
+            this.btnSignOut.TabIndex = 4;
+            this.btnSignOut.Text = "Sair";
+            this.btnSignOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSignOut.UseVisualStyleBackColor = true;
+            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
+            this.btnSignOut.MouseEnter += new System.EventHandler(this.btnSignOut_MouseEnter);
+            this.btnSignOut.MouseLeave += new System.EventHandler(this.btnSignOut_MouseLeave);
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::TicketsDeCinema.Properties.Resources.logo;
             this.pictureBox1.Location = new System.Drawing.Point(47, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);
@@ -146,6 +160,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cine.exe";
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -159,5 +174,6 @@
         private System.Windows.Forms.Button btnMyTickets;
         private System.Windows.Forms.Button btnMovieSession;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lbActiveUser;
     }
 }

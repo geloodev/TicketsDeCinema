@@ -48,6 +48,9 @@ namespace TicketsDeCinema
                 app.Show();
                 app.Activate();
                 this.Hide();
+
+                tbUserId.Text = "";
+                tbPassword.Text = "";
             } else
             {
                 MessageBox.Show("Credenciais incorretas");

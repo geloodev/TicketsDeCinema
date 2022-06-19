@@ -110,6 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="database\database.sql" />
+    <None Include="images\logoutWhite.png" />
+    <None Include="images\logo.png" />
+    <None Include="images\logoutBlack.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

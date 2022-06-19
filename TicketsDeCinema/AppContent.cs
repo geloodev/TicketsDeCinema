@@ -19,6 +19,8 @@ namespace TicketsDeCinema
             btnMyTickets.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 199, 116);
             btnMyProfile.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 199, 116);
             btnSignOut.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 199, 116);
+
+            lbActiveUser.Text = "Entrou como " + loggedUser.getUserName().Split(' ')[0];
         }
 
         private void btnMovieSession_MouseEnter(object sender, EventArgs e)
@@ -53,12 +55,22 @@ namespace TicketsDeCinema
 
         private void btnSignOut_MouseEnter(object sender, EventArgs e)
         {
+            btnSignOut.Image = ((System.Drawing.Image)(Properties.Resources.logoutWhite));
             btnSignOut.ForeColor = Color.FromArgb(255, 255, 255);
         }
 
         private void btnSignOut_MouseLeave(object sender, EventArgs e)
         {
+            btnSignOut.Image = ((System.Drawing.Image)(Properties.Resources.logoutBlack));
             btnSignOut.ForeColor = Color.FromArgb(51, 51, 51);
+        }
+
+        private void btnSignOut_Click(object sender, EventArgs e)
+        {
+            SignIn signInForm = new SignIn();
+            signInForm.Show();
+            signInForm.Activate();
+            this.Close();
         }
     }
 }

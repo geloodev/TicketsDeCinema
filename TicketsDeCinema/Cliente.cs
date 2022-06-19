@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TicketsDeCinema
 {
-    internal class Cliente
+    public class Cliente
     {
         Utils utils = new Utils();
         //String de conexão com o banco de dados local
@@ -67,9 +67,16 @@ namespace TicketsDeCinema
 
             string base64Password = utils.Base64Encode(loginPassword);
 
-            string queryText = $"select * from cliente where cpf = {loginCpf} and senha = {base64Password}";
+            MySqlCommand query = new MySqlCommand();
 
-            MySqlCommand query = new MySqlCommand(queryText, connection);
+            query.Connection = connection;
+
+            query.CommandText = "select * from cliente where cpf = @loginCpf and senha = @base64Password";
+
+            query.Parameters.AddWithValue("@loginCpf", loginCpf);
+            query.Parameters.AddWithValue("@base64Password", base64Password);
+
+
             MySqlDataReader queryData = query.ExecuteReader();
 
             //caso o comando select tenha retornado alguma linha

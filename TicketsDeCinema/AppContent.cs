@@ -12,7 +12,7 @@ namespace TicketsDeCinema
 {
     public partial class AppContent : Form
     {
-        public AppContent()
+        public AppContent(Cliente loggedUser)
         {
             InitializeComponent();
             btnMovieSession.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 199, 116);

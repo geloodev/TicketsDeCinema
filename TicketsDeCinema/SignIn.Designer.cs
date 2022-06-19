@@ -32,7 +32,7 @@
             this.labelCompre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.tbUserId = new System.Windows.Forms.TextBox();
             this.btnSignIn = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.labelNaoTemConta = new System.Windows.Forms.Label();
@@ -61,9 +61,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(506, 122);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 22);
+            this.label1.Size = new System.Drawing.Size(84, 22);
             this.label1.TabIndex = 3;
-            this.label1.Text = "E-mail";
+            this.label1.Text = "Seu CPF";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label2
@@ -74,19 +74,19 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(506, 199);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 22);
+            this.label2.Size = new System.Drawing.Size(103, 22);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Senha";
+            this.label2.Text = "Sua senha";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // tbEmail
+            // tbUserId
             // 
-            this.tbEmail.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.tbEmail.Location = new System.Drawing.Point(510, 147);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(200, 29);
-            this.tbEmail.TabIndex = 6;
+            this.tbUserId.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.tbUserId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.tbUserId.Location = new System.Drawing.Point(510, 147);
+            this.tbUserId.Name = "tbUserId";
+            this.tbUserId.Size = new System.Drawing.Size(200, 29);
+            this.tbUserId.TabIndex = 6;
             // 
             // btnSignIn
             // 
@@ -162,7 +162,7 @@
             this.Controls.Add(this.labelNaoTemConta);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.btnSignIn);
-            this.Controls.Add(this.tbEmail);
+            this.Controls.Add(this.tbUserId);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelCompre);
@@ -181,7 +181,7 @@
         private System.Windows.Forms.Label labelCompre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.TextBox tbUserId;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label labelNaoTemConta;

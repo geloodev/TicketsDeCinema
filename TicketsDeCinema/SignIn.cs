@@ -12,7 +12,7 @@ namespace TicketsDeCinema
 {
     public partial class SignIn : Form
     {
-        string userEmail;
+        string userId;
         string userPassword;
         public SignIn()
         {
@@ -29,19 +29,29 @@ namespace TicketsDeCinema
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            userEmail = tbEmail.Text;
+            userId = tbUserId.Text;
             userPassword = tbPassword.Text;
 
-            if (userEmail.Trim() == "" || userPassword.Trim() == "")
+            if (userId.Trim() == "" || userPassword.Trim() == "")
             {
                 MessageBox.Show("Preencha os campos corretamente para entrar");
                 return;
             }
+            
+            Cliente loggedUser = new Cliente("", "", "", "", "");
 
-            AppContent app = new AppContent();
-            app.Show();
-            app.Activate();
-            this.Hide();
+            loggedUser = loggedUser.SignIn(userId, userPassword);
+
+            if (loggedUser != null)
+            {
+                AppContent app = new AppContent(loggedUser);
+                app.Show();
+                app.Activate();
+                this.Hide();
+            } else
+            {
+                MessageBox.Show("Credenciais incorretas");
+            }
         }
     }
 }

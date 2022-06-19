@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace TicketsDeCinema
 {
-    public partial class FormRegistro : Form
+    public partial class SignIn : Form
     {
-        public FormRegistro()
+        public SignIn()
         {
             InitializeComponent();
+        }
+
+        private void lkGoToSignUp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SignUp signUpForm = new SignUp();
+            signUpForm.Show();
+            signUpForm.Activate();
+            this.Hide();
         }
     }
 }

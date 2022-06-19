@@ -164,6 +164,7 @@
             this.tbPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.tbPassword.Location = new System.Drawing.Point(544, 232);
             this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(200, 29);
             this.tbPassword.TabIndex = 24;
             // 

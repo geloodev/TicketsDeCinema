@@ -101,6 +101,9 @@ insert into sessao values
 ('2022-06-20 16:30:00', 1, 4);
 
 select * from cliente;
+select * from filme;
+select * from sala;
+select * from sessao;
 select * from ticket;
 
 -- Consulta Nome, Preço e Data dos ingressos comprados

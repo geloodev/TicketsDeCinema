@@ -47,6 +47,10 @@ namespace TicketsDeCinema
                 {
                     MessageBox.Show("Preencha os campos corretamente para realizar o cadastro");
                     return;
+                } else if (userId.ToCharArray().Count() < 11)
+                {
+                    MessageBox.Show("CPF precisa ter 11 digitos");
+                    return;
                 }
 
                 userToSignUp = new Cliente(userId, userName, userBirthDate, userEmail, userPassword);

@@ -266,6 +266,7 @@ namespace TicketsDeCinema
                 inicilizarMatriz();
                 desenhaMatriz();
 
+                selectedChairs.Clear();
                 userId = "";
                 movieToBuyId = 0;
                 movieToBuyName = "";

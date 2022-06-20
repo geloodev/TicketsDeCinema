@@ -106,6 +106,7 @@ namespace TicketsDeCinema
             buyTicketScreen.setMovieIsSubtitled(isSubtitled);
             buyTicketScreen.setMovieIs3d(is3d);
 
+            //buyTicketScreen.inicilizarMatriz();
             buyTicketScreen.Show();
             buyTicketScreen.BringToFront();
         }
@@ -131,6 +132,7 @@ namespace TicketsDeCinema
             buyTicketScreen.setMovieIsSubtitled(isSubtitled);
             buyTicketScreen.setMovieIs3d(is3d);
 
+            //buyTicketScreen.inicilizarMatriz();
             buyTicketScreen.Show();
             buyTicketScreen.BringToFront();
         }
@@ -156,6 +158,7 @@ namespace TicketsDeCinema
             buyTicketScreen.setMovieIsSubtitled(isSubtitled);
             buyTicketScreen.setMovieIs3d(is3d);
 
+            //buyTicketScreen.inicilizarMatriz();
             buyTicketScreen.Show();
             buyTicketScreen.BringToFront();
         }
@@ -181,6 +184,7 @@ namespace TicketsDeCinema
             buyTicketScreen.setMovieIsSubtitled(isSubtitled);
             buyTicketScreen.setMovieIs3d(is3d);
 
+            //buyTicketScreen.inicilizarMatriz();
             buyTicketScreen.Show();
             buyTicketScreen.BringToFront();
         }
@@ -206,6 +210,7 @@ namespace TicketsDeCinema
             buyTicketScreen.setMovieIsSubtitled(isSubtitled);
             buyTicketScreen.setMovieIs3d(is3d);
 
+            //buyTicketScreen.inicilizarMatriz();
             buyTicketScreen.Show();
             buyTicketScreen.BringToFront();
         }
@@ -231,6 +236,7 @@ namespace TicketsDeCinema
             buyTicketScreen.setMovieIsSubtitled(isSubtitled);
             buyTicketScreen.setMovieIs3d(is3d);
 
+            //buyTicketScreen.inicilizarMatriz();
             buyTicketScreen.Show();
             buyTicketScreen.BringToFront();
         }

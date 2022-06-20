@@ -26,6 +26,7 @@ namespace TicketsDeCinema
         bool is3d;
 
         List<string> selectedChairs = new List<string>();
+        //List<string> occupiedChairs = new List<string>();
 
         int boughtTicketsAmout = 0;
         float total = 0;
@@ -52,6 +53,45 @@ namespace TicketsDeCinema
 
         public void inicilizarMatriz()
         {
+            /*linhas = 5;
+            colunas = 20;
+            MySqlCommand selectOccupiedChairs;
+
+            try
+            {
+                connection.Open();
+
+                selectOccupiedChairs = new MySqlCommand();
+
+                selectOccupiedChairs.Connection = connection;
+
+                selectOccupiedChairs.CommandText = "select assento from ticket where idFilme = @movieId and numeroSala = @movieRoom and dataHora = @movieSession;";
+
+                selectOccupiedChairs.Parameters.AddWithValue("@movieId", movieToBuyId);
+                selectOccupiedChairs.Parameters.AddWithValue("@movieRoom", movieToBuyRoom);
+                selectOccupiedChairs.Parameters.AddWithValue("@movieSession", movieDate + " " + movieTime + ":00");
+
+                MySqlDataReader queryData = selectOccupiedChairs.ExecuteReader();
+
+                if (queryData.HasRows)
+                {
+                    queryData.Read();
+
+                    string occupiedChair = queryData.GetString(0);
+
+                    occupiedChairs.Add(occupiedChair);
+                }
+                else
+                {
+                    occupiedChairs = null;
+                }
+
+                queryData.Close();
+            }
+            finally {
+                if (connection != null) connection.Close();
+            }*/
+
             this.matriz = new String[linhas, colunas];
 
             for (int i = 0; i < this.linhas; i++)
@@ -61,13 +101,23 @@ namespace TicketsDeCinema
                     if (j < 10)
                     {
                         this.matriz[i, j] = alf[i] + "0" + j;
-                    } else
+                    }
+                    else
                     {
                         this.matriz[i, j] = $"{alf[i]}{j}";
                     }
                 }
             }
 
+            /*if (occupiedChairs != null)
+            {
+                foreach(string occupiedChair in occupiedChairs)
+                {
+                    int linha = Array.IndexOf(alf, occupiedChair.ToCharArray()[0]);
+                    int coluna = Int32.Parse(occupiedChair.Remove(0, 1));
+                    define_valor_celula(linha, coluna, (obtem_valor(linha, coluna) + "O");
+                }
+            }*/
         }
 
         public void define_valor_celula(int linha, int coluna, String valor)
@@ -201,9 +251,6 @@ namespace TicketsDeCinema
                         insertTicket.Parameters.AddWithValue("@movieIsHalfPriced", 1);
 
                         insertTicket.ExecuteNonQuery();
-
-                        MessageBox.Show("Ingressos comprados com sucesso, verifique no menu 'Meus ingressos'");
-                        this.Hide();
                     }
                     catch (MySqlException er)
                     {
@@ -214,6 +261,27 @@ namespace TicketsDeCinema
                         if (connection != null) connection.Close();
                     }
                 }
+
+                MessageBox.Show("Ingressos comprados com sucesso, verifique no menu 'Meus ingressos'");
+                inicilizarMatriz();
+                desenhaMatriz();
+
+                userId = "";
+                movieToBuyId = 0;
+                movieToBuyName = "";
+                movieDate = "";
+                movieTime = "";
+                movieToBuyRoom = 0;
+                isSubtitled = false;
+                is3d = false;
+                lbChairsSelectedAmount.Text = "";
+                lbTotal.Text = "";
+                boughtTicketsAmout = 0;
+                total = 0;
+
+                dgChairs.ClearSelection();
+
+                this.Hide();
             }
         }
     }

@@ -39,8 +39,14 @@ namespace TicketsDeCinema
             myProfileScreen.Hide();
             movieSessionsScreen.Show();
             movieSessionsScreen.BringToFront();
+            movieSessionsScreen.setUserId(loggedUser.getUserId());
 
             lbActiveUser.Text = "Entrou como " + loggedUser.getUserName().Split(' ')[0];
+        }
+
+        public string getUserId()
+        {
+            return loggedUser.getUserId();
         }
 
         public void getMovieSessions()

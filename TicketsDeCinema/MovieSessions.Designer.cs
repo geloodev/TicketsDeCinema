@@ -248,6 +248,7 @@
             // 
             // buyTicketScreen
             // 
+            this.buyTicketScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.buyTicketScreen.Location = new System.Drawing.Point(0, 0);
             this.buyTicketScreen.Name = "buyTicketScreen";
             this.buyTicketScreen.Size = new System.Drawing.Size(588, 461);

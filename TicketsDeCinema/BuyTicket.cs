@@ -16,6 +16,7 @@ namespace TicketsDeCinema
         string connectionString;
         MySqlConnection connection;
 
+        string userId;
         int movieToBuyId;
         string movieToBuyName;
         string movieDate;
@@ -83,12 +84,10 @@ namespace TicketsDeCinema
         {
             for (int i = 0; i < linhas; i++)
             {
-                //definir altura (linha)
                 dgChairs.Rows[i].Height = 15;
 
                 for (int j = 0; j < colunas; j++)
                 {
-                    //definir largura (coluna)
                     dgChairs.Columns[j].Width = 15;
 
                     switch (obtem_valor(i, j).ToCharArray()[obtem_valor(i, j).ToCharArray().Count() - 1])
@@ -107,6 +106,11 @@ namespace TicketsDeCinema
                     }
                 }
             }
+        }
+
+        public void setUserId(string userId)
+        {
+            this.userId = userId;
         }
 
         public void setMovieNameLabel(string movieName)
@@ -186,7 +190,7 @@ namespace TicketsDeCinema
                         insertTicket.Connection = connection;
 
                         insertTicket.CommandText = "insert into ticket values (default, @userId, @movieId, @movieRoom, @movieTime, @price, @selectedChair, @movieIs3d, @movieIsSubtitled, @movieIsHalfPriced)";
-                        insertTicket.Parameters.AddWithValue("@userId", "12345678900");
+                        insertTicket.Parameters.AddWithValue("@userId", userId);
                         insertTicket.Parameters.AddWithValue("@movieId", movieToBuyId);
                         insertTicket.Parameters.AddWithValue("@movieRoom", movieToBuyRoom);
                         insertTicket.Parameters.AddWithValue("@movieTime", movieDate + " " + movieTime + ":00");

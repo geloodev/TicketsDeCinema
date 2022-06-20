@@ -36,7 +36,7 @@ create table sessao (
 
 CREATE TABLE ticket (
 idTicket INT AUTO_INCREMENT PRIMARY KEY,
-cpfCliente varchar(11),
+cpfCliente varchar(11) not null,
 idFilme INT,
 numeroSala INT,
 dataHora DATETIME NOT NULL,
@@ -99,32 +99,8 @@ insert into sessao values
 ('2022-06-20 12:30:00', 1, 4),
 ('2022-06-20 14:30:00', 1, 4),
 ('2022-06-20 16:30:00', 1, 4);
--- ('2022-01-23 16:30:00', 1, 1),
--- ('2022-01-23 19:00:00', 2, 1),
--- ('2022-01-23 21:00:00', 2, 1),
--- ('2022-01-23 12:30:00', 9, 2),
--- ('2022-01-23 14:30:00', 9, 2),
--- ('2022-01-23 16:30:00', 9, 2),
--- ('2022-01-23 19:00:00', 10, 2),
--- ('2022-01-23 21:00:00', 10, 2),
--- ('2022-01-23 12:30:00', 4, 3),
--- ('2022-01-23 14:30:00', 4, 3),
--- ('2022-01-23 12:30:00', 2, 4),
--- ('2022-01-23 14:30:00', 2, 4),
--- ('2022-01-23 16:30:00', 2, 5),
--- ('2022-01-23 12:30:00', 1, 6),
--- ('2022-01-23 14:30:00', 1, 6),
--- ('2022-01-23 16:30:00', 1, 6);
-
--- INSERT INTO ticket VALUES
--- (default,'12345678900',1,1,'2022-01-23 12:30:00','14.00','B22','0','0','1'),
--- (default,'12345678900',1,1,'2022-01-23 12:30:00','14.00','B23','0','0','1'),
--- (default,'00987654321',1,1,'2022-01-23 14:30:00','14.00','C03','1','0','1');
 
 select * from cliente;
-select * from filme;
-select * from sala;
-select * from sessao order by numeroSala;
 select * from ticket;
 
 -- Consulta Nome, Preço e Data dos ingressos comprados
@@ -143,13 +119,3 @@ SELECT filme.nome as 'Nome do Filme', filme.genero as 'Gênero', date_format(fil
 	FROM filme right join ticket on filme.idFilme = ticket.idFilme
     group by ticket.idTicket
     order by ticket.idTicket asc;
-
-select distinct f.nome from filme f inner join ticket t on t.idFilme = f.idFilme where f.idFilme = 1;
-
--- testes    
--- select nome as 'Nome', genero as 'Gênero', date_format(lancamento,"%d/%m/%Y") as 'Data de Lançamento', duracao as 'Duração', classificacao as 'Classificação' from filme order by nome;
--- select CPF, Nome, date_format(dataNascimento,"%d/%m/%Y") as 'Data de Nacimento', email as 'e-Mail', senha as 'Senha' from cliente order by nome;
-
-select distinct f.nome from filme f inner join sessao s on s.idFilme = f.idFilme where f.idFilme = 1;
-
--- insert into ticket values (default, "12345678900", 9, 1, '2022-06-19 12:30:00', 14.00, 'A12', 0, 0, 1);

@@ -13,6 +13,7 @@ namespace TicketsDeCinema
 {
     public partial class MovieSessions : UserControl
     {
+        string userId;
         int movieToBuyId;
         string movieToBuyName;
         string movieDate = DateTime.Today.ToString("yyyy-MM-dd");
@@ -33,6 +34,11 @@ namespace TicketsDeCinema
             connection = new MySqlConnection(connectionString);
 
             buyTicketScreen.Hide();
+        }
+
+        public void setUserId(string userId)
+        {
+            this.userId = userId;
         }
 
         public void getMovies()
@@ -88,6 +94,7 @@ namespace TicketsDeCinema
             isSubtitled = false;
             is3d = false;
 
+            buyTicketScreen.setUserId(userId);
             buyTicketScreen.setMovieNameLabel(movieToBuyName);
             buyTicketScreen.setMovieInfoLabel(movieDate, movieTime, movieToBuyRoom);
 
@@ -112,6 +119,7 @@ namespace TicketsDeCinema
             isSubtitled = false;
             is3d = false;
 
+            buyTicketScreen.setUserId(userId);
             buyTicketScreen.setMovieNameLabel(movieToBuyName);
             buyTicketScreen.setMovieInfoLabel(movieDate, movieTime, movieToBuyRoom);
 
@@ -130,13 +138,13 @@ namespace TicketsDeCinema
         private void lbMovie1Session4_Click(object sender, EventArgs e)
         {
             movieToBuyId = 9;
-            //movieToBuyName = movies[movies.FindIndex(movie => movie.getIdFilme().Equals(movieToBuyId))].getNome();
             movieToBuyName = "The Batman";
             movieTime = "12:30";
             movieToBuyRoom = 3;
             isSubtitled = false;
             is3d = true;
 
+            buyTicketScreen.setUserId(userId);
             buyTicketScreen.setMovieNameLabel(movieToBuyName);
             buyTicketScreen.setMovieInfoLabel(movieDate, movieTime, movieToBuyRoom);
 
@@ -161,6 +169,7 @@ namespace TicketsDeCinema
             isSubtitled = false;
             is3d = false;
 
+            buyTicketScreen.setUserId(userId);
             buyTicketScreen.setMovieNameLabel(movieToBuyName);
             buyTicketScreen.setMovieInfoLabel(movieDate, movieTime, movieToBuyRoom);
 
@@ -185,6 +194,7 @@ namespace TicketsDeCinema
             isSubtitled = true;
             is3d = false;
 
+            buyTicketScreen.setUserId(userId);
             buyTicketScreen.setMovieNameLabel(movieToBuyName);
             buyTicketScreen.setMovieInfoLabel(movieDate, movieTime, movieToBuyRoom);
 
@@ -209,6 +219,7 @@ namespace TicketsDeCinema
             isSubtitled = true;
             is3d = false;
 
+            buyTicketScreen.setUserId(userId);
             buyTicketScreen.setMovieNameLabel(movieToBuyName);
             buyTicketScreen.setMovieInfoLabel(movieDate, movieTime, movieToBuyRoom);
 

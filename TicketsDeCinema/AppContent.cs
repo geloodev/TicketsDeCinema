@@ -16,9 +16,8 @@ namespace TicketsDeCinema
         string connectionString;
         MySqlConnection connection;
 
-        List<Ticket> boughtTickets = new List<Ticket>();
+        List<Ticket> boughtTickets = null;
         List<Sessao> availableMovieSessions = new List<Sessao>();
-        List<int> availableMoviesId = new List<int>();
         List<AvailableMovieSessions> availableMovies = new List<AvailableMovieSessions>();
 
         Cliente loggedUser;
@@ -42,8 +41,6 @@ namespace TicketsDeCinema
             movieSessionsScreen.BringToFront();
 
             lbActiveUser.Text = "Entrou como " + loggedUser.getUserName().Split(' ')[0];
-
-            getBoughtTickets();
         }
 
         public void getMovieSessions()
@@ -122,6 +119,7 @@ namespace TicketsDeCinema
 
         public void getBoughtTickets()
         {
+            boughtTickets = new List<Ticket>();
             MySqlCommand selectTickets;
 
             try
@@ -178,35 +176,38 @@ namespace TicketsDeCinema
                 if (connection != null) connection.Close();
             }
 
-            foreach (Ticket boughtTicket in boughtTickets)
+            if (boughtTickets != null)
             {
-                try
+                foreach (Ticket boughtTicket in boughtTickets)
                 {
-                    connection.Open();
-
-                    MySqlCommand getMovieName = new MySqlCommand();
-                    getMovieName.Connection = connection;
-                    getMovieName.CommandText = "select distinct f.nome from filme f inner join ticket t on t.idFilme = f.idFilme where f.idFilme = @idFilme;";
-                    getMovieName.Parameters.AddWithValue("@idFilme", boughtTicket.getTicketMovieId());
-
-                    MySqlDataReader movieName = getMovieName.ExecuteReader();
-
-                    if (movieName.HasRows)
+                    try
                     {
-                        movieName.Read();
+                        connection.Open();
 
-                        myTicketsScreen.getDgTickets().Rows.Add(
-                            movieName.GetString(0),
-                            boughtTicket.getTicketMovieRoom(),
-                            boughtTicket.getTicketChair(),
-                            boughtTicket.getTicketMovieTime(),
-                            boughtTicket.getTicketPrice()
-                        );
+                        MySqlCommand getMovieName = new MySqlCommand();
+                        getMovieName.Connection = connection;
+                        getMovieName.CommandText = "select distinct f.nome from filme f inner join ticket t on t.idFilme = f.idFilme where f.idFilme = @idFilme;";
+                        getMovieName.Parameters.AddWithValue("@idFilme", boughtTicket.getTicketMovieId());
+
+                        MySqlDataReader movieName = getMovieName.ExecuteReader();
+
+                        if (movieName.HasRows)
+                        {
+                            movieName.Read();
+
+                            myTicketsScreen.getDgTickets().Rows.Add(
+                                movieName.GetString(0),
+                                boughtTicket.getTicketMovieRoom(),
+                                boughtTicket.getTicketChair(),
+                                boughtTicket.getTicketMovieTime(),
+                                boughtTicket.getTicketPrice()
+                            );
+                        }
                     }
-                }
-                finally
-                {
-                    if (connection != null) connection.Close();
+                    finally
+                    {
+                        if (connection != null) connection.Close();
+                    }
                 }
             }
         }
@@ -280,6 +281,7 @@ namespace TicketsDeCinema
 
         private void btnMyTickets_Click(object sender, EventArgs e)
         {
+            getBoughtTickets();
             movieSessionsScreen.Hide();
             myProfileScreen.Hide();
             myTicketsScreen.Show();

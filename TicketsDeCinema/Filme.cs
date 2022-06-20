@@ -13,9 +13,9 @@ namespace TicketsDeCinema
         private string genero;
         private string lancamento;
         private string duracao;
-        private string[] classificacao;
+        private string classificacao;
 
-        public Filme(int idFilme, string nome, string genero, string lancamento, string duracao, string[] classificacao)
+        public Filme(int idFilme, string nome, string genero, string lancamento, string duracao, string classificacao)
         {
             this.idFilme = idFilme;
             this.nome = nome;
@@ -39,7 +39,7 @@ namespace TicketsDeCinema
 
         public string getDuracao() { return duracao; }
         
-        public string[] getClassificacao() { return classificacao; }
+        public string getClassificacao() { return classificacao; }
 
         ///////////////////////////////
         // SETTERS  
@@ -55,6 +55,6 @@ namespace TicketsDeCinema
 
         public void setDuracao(string duracao) { this.duracao = duracao; }
 
-        public void setClassificacao(string[] classificacao) { this.classificacao = classificacao; }
+        public void setClassificacao(string classificacao) { this.classificacao = classificacao; }
     }
 }

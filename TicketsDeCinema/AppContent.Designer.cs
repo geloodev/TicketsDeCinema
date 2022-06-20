@@ -173,6 +173,7 @@
             // 
             // movieSessionsScreen
             // 
+            this.movieSessionsScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.movieSessionsScreen.Location = new System.Drawing.Point(197, 0);
             this.movieSessionsScreen.Name = "movieSessionsScreen";
             this.movieSessionsScreen.Size = new System.Drawing.Size(588, 461);

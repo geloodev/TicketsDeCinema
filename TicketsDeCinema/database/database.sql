@@ -46,7 +46,7 @@ versao3d BOOL NULL DEFAULT 0,
 legendado BOOL NULL DEFAULT 0,
 meiaEntrada BOOL NULL DEFAULT 0,
 
-constraint fkDataHoraIdFilmeNumeroSala foreign key (dataHora, numeroSala) references sessao (dataHora, numeroSala),
+constraint fkDataHoraNumeroSala foreign key (dataHora, numeroSala) references sessao (dataHora, numeroSala),
 FOREIGN KEY (cpfCliente) REFERENCES cliente (cpf)
 ON DELETE CASCADE
 ON UPDATE CASCADE
@@ -87,8 +87,18 @@ insert into sala values
 (10, 70);
 
 insert into sessao values
-('2022-01-23 12:30:00', 1, 1),
-('2022-01-23 14:30:00', 1, 1);
+('2022-06-20 12:30:00', 9, 1),
+('2022-06-20 14:30:00', 9, 1),
+('2022-06-20 16:30:00', 9, 1),
+('2022-06-20 12:30:00', 1, 2),
+('2022-06-20 14:30:00', 1, 2),
+('2022-06-20 16:30:00', 1, 2),
+('2022-06-20 12:30:00', 9, 3),
+('2022-06-20 14:30:00', 9, 3),
+('2022-06-20 16:30:00', 9, 3),
+('2022-06-20 12:30:00', 1, 4),
+('2022-06-20 14:30:00', 1, 4),
+('2022-06-20 16:30:00', 1, 4);
 -- ('2022-01-23 16:30:00', 1, 1),
 -- ('2022-01-23 19:00:00', 2, 1),
 -- ('2022-01-23 21:00:00', 2, 1),
@@ -106,15 +116,15 @@ insert into sessao values
 -- ('2022-01-23 14:30:00', 1, 6),
 -- ('2022-01-23 16:30:00', 1, 6);
 
-INSERT INTO ticket VALUES
-(default,'12345678900',1,1,'2022-01-23 12:30:00','14.00','B22','0','0','1'),
-(default,'12345678900',1,1,'2022-01-23 12:30:00','14.00','B23','0','0','1'),
-(default,'00987654321',1,1,'2022-01-23 14:30:00','14.00','C03','1','0','1');
+-- INSERT INTO ticket VALUES
+-- (default,'12345678900',1,1,'2022-01-23 12:30:00','14.00','B22','0','0','1'),
+-- (default,'12345678900',1,1,'2022-01-23 12:30:00','14.00','B23','0','0','1'),
+-- (default,'00987654321',1,1,'2022-01-23 14:30:00','14.00','C03','1','0','1');
 
 select * from cliente;
 select * from filme;
 select * from sala;
-select * from sessao;
+select * from sessao order by numeroSala;
 select * from ticket;
 
 -- Consulta Nome, Preço e Data dos ingressos comprados
@@ -139,3 +149,7 @@ select distinct f.nome from filme f inner join ticket t on t.idFilme = f.idFilme
 -- testes    
 -- select nome as 'Nome', genero as 'Gênero', date_format(lancamento,"%d/%m/%Y") as 'Data de Lançamento', duracao as 'Duração', classificacao as 'Classificação' from filme order by nome;
 -- select CPF, Nome, date_format(dataNascimento,"%d/%m/%Y") as 'Data de Nacimento', email as 'e-Mail', senha as 'Senha' from cliente order by nome;
+
+select distinct f.nome from filme f inner join sessao s on s.idFilme = f.idFilme where f.idFilme = 1;
+
+-- insert into ticket values (default, "12345678900", 9, 1, '2022-06-19 12:30:00', 14.00, 'A12', 0, 0, 1);

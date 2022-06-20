@@ -53,6 +53,13 @@
     <Compile Include="AppContent.Designer.cs">
       <DependentUpon>AppContent.cs</DependentUpon>
     </Compile>
+    <Compile Include="AvailableMovieSessions.cs" />
+    <Compile Include="BuyTicket.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BuyTicket.Designer.cs">
+      <DependentUpon>BuyTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cinema.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Filme.cs" />
@@ -74,6 +81,7 @@
     <Compile Include="myTickets.Designer.cs">
       <DependentUpon>myTickets.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sessao.cs" />
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +101,9 @@
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="AppContent.resx">
       <DependentUpon>AppContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuyTicket.resx">
+      <DependentUpon>BuyTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MovieSessions.resx">
       <DependentUpon>MovieSessions.cs</DependentUpon>
@@ -137,6 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="database\database.sql" />
+    <None Include="images\sonic2.jpg" />
+    <None Include="images\batman.jpg" />
     <None Include="images\logoutWhite.png" />
     <None Include="images\logo.png" />
     <None Include="images\logoutBlack.png" />

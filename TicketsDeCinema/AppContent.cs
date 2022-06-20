@@ -16,8 +16,8 @@ namespace TicketsDeCinema
         string connectionString;
         MySqlConnection connection;
 
-        List<Ticket> boughtTickets = null;
-        List<Sessao> availableMovieSessions = new List<Sessao>();
+        List<Ticket> boughtTickets;
+        List<Sessao> availableMovieSessions;
         List<AvailableMovieSessions> availableMovies = new List<AvailableMovieSessions>();
 
         Cliente loggedUser;
@@ -51,6 +51,7 @@ namespace TicketsDeCinema
 
         public void getMovieSessions()
         {
+            availableMovieSessions = new List<Sessao>();
             MySqlCommand selectMovieSessions;
 
             try
@@ -184,6 +185,7 @@ namespace TicketsDeCinema
 
             if (boughtTickets != null)
             {
+                myTicketsScreen.getDgTickets().Rows.Clear();
                 foreach (Ticket boughtTicket in boughtTickets)
                 {
                     try

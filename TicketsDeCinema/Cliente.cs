@@ -90,7 +90,7 @@ namespace TicketsDeCinema
                 string userEmail = queryData.GetString(3);
                 string userPassword = queryData.GetString(4);
 
-                loggedCliente = new Cliente(userId, userName, userBirthDate.ToString(), userEmail, userPassword);
+                loggedCliente = new Cliente(userId, userName, userBirthDate.ToString("yyyy-MM-dd"), userEmail, userPassword);
             } else
             {
                 loggedCliente = null;
@@ -147,9 +147,16 @@ namespace TicketsDeCinema
                 connection = new MySqlConnection(connectionString);
                 connection.Open();
 
-                string updateText = $"update cliente set nome = {userToUpdate.getUserName()}, dataNascimento = {userToUpdate.getUserBirthDate()}, email = {userToUpdate.getUserEmail()}, senha = {utils.Base64Encode(userToUpdate.getUserPassword())}";
+                updateUser = new MySqlCommand();
+                updateUser.Connection = connection;
+                updateUser.CommandText = "update cliente set nome = @userName, dataNascimento = @userBirthDate, email = @userEmail, senha = @userPassword where cpf = @userId";
+                
+                updateUser.Parameters.AddWithValue("@userId", userToUpdate.getUserId());
+                updateUser.Parameters.AddWithValue("@userName", userToUpdate.getUserName());
+                updateUser.Parameters.AddWithValue("@userBirthDate", userToUpdate.getUserBirthDate());
+                updateUser.Parameters.AddWithValue("@userEmail", userToUpdate.getUserEmail());
+                updateUser.Parameters.AddWithValue("@userPassword", utils.Base64Encode(userToUpdate.getUserPassword()));
 
-                updateUser = new MySqlCommand(updateText, connection);
                 affectedRows = updateUser.ExecuteNonQuery();
             } finally
             {

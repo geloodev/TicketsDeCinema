@@ -15,6 +15,7 @@ namespace TicketsDeCinema
     {
         string connectionString;
         MySqlConnection connection;
+        Utils utils = new Utils();
 
         List<Ticket> boughtTickets;
         List<Sessao> availableMovieSessions;
@@ -40,6 +41,14 @@ namespace TicketsDeCinema
             movieSessionsScreen.Show();
             movieSessionsScreen.BringToFront();
             movieSessionsScreen.setUserId(loggedUser.getUserId());
+
+            myProfileScreen.setUserToLogInId(loggedUser.getUserId());
+            myProfileScreen.setUserToLogInPassword(utils.Base64Decode(loggedUser.getUserPassword()));
+            myProfileScreen.setUserToLogInName(loggedUser.getUserName());
+            myProfileScreen.setUserToLogInBirthDate(loggedUser.getUserBirthDate());
+            myProfileScreen.setUserToLogInEmail(loggedUser.getUserEmail());
+
+            myProfileScreen.setUserData();
 
             lbActiveUser.Text = "Entrou como " + loggedUser.getUserName().Split(' ')[0];
         }
